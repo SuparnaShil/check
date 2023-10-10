@@ -1,6 +1,8 @@
 import time
+import random
 
 from selenium import webdriver
+from selenium.webdriver import Keys
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -40,13 +42,37 @@ WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//u[
 driver.find_element(By.XPATH,"//u[normalize-space()='Register / Login']").click()
 
 
-name = driver.find_element(By.XPATH,"//input[@placeholder='Name']").send_keys("Username")
+name = driver.find_element(By.XPATH,"//input[@placeholder='Name']")
+email = driver.find_element(By.XPATH,"//input[@data-qa='signup-email']")
+signup = driver.find_element(By.XPATH,"//button[normalize-space()='Signup']")
 
 
 
-email = driver.find_element(By.XPATH,"//input[@data-qa='signup-email']").send_keys("username@gmail.com")
+name.send_keys("Username")
+email.send_keys("username" +str(random.randint(100, 999))+"@gmail.com")
+signup.click()
 
-driver.find_element(By.XPATH,"//button[normalize-space()='Signup']").click()
+while True:
+    time.sleep(5)
+    if driver.find_element(By.XPATH,"//p[normalize-space()='Email Address already exist!']").is_displayed():
+
+        #email.send_keys(Keys.CONTROL, "a")
+        #email.send_keys(Keys.DELETE)
+        #email.clear()
+        temp =driver.find_elements(By.XPATH,"//input[@name='email']")
+        temp[1].clear()
+        temp[1].send_keys("username" +str(random.randint(100, 999)) + "@gmail.com")
+        time.sleep(5)
+        su = driver.find_element(By.XPATH,"//button[normalize-space()='Signup']")
+        driver.execute_script("arguments[0].click();", su)
+
+    else: break
+
+
+
+
+
+
 
 
 
