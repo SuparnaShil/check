@@ -19,13 +19,6 @@ driver.maximize_window()
 print(driver.title)
 
 
-#page_title = driver.title
-#driver.assertEqual(page_title, "Automation Exercise", f"Page title is not equal to 'Automation Exercise'")
-
-
-
-
-
 while True:
     try:
         #WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//a[contains(text(),'Add to cart')]")))
@@ -45,6 +38,15 @@ driver.find_element(By.XPATH,"//a[normalize-space()='Proceed To Checkout']").cli
 
 WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH,"//u[normalize-space()='Register / Login']")))
 driver.find_element(By.XPATH,"//u[normalize-space()='Register / Login']").click()
+
+
+name = driver.find_element(By.XPATH,"//input[@placeholder='Name']").send_keys("Username")
+
+
+
+email = driver.find_element(By.XPATH,"//input[@data-qa='signup-email']").send_keys("username@gmail.com")
+
+driver.find_element(By.XPATH,"//button[normalize-space()='Signup']").click()
 
 
 
