@@ -54,28 +54,56 @@ signup.click()
 
 while True:
     time.sleep(5)
-    if driver.find_element(By.XPATH,"//p[normalize-space()='Email Address already exist!']").is_displayed():
+    try:
+        if driver.find_element(By.XPATH,"//p[normalize-space()='Email Address already exist!']").is_displayed():
+            #email.send_keys(Keys.CONTROL, "a")
+          #email.send_keys(Keys.DELETE)
+         #email.clear()
+            temp =driver.find_elements(By.XPATH,"//input[@name='email']")
+            temp[1].clear()
+            temp[1].send_keys("username" +str(random.randint(100, 999)) + "@gmail.com")
+            time.sleep(5)
+            su = driver.find_element(By.XPATH,"//button[normalize-space()='Signup']")
+            driver.execute_script("arguments[0].click();", su)
 
-        #email.send_keys(Keys.CONTROL, "a")
-        #email.send_keys(Keys.DELETE)
-        #email.clear()
-        temp =driver.find_elements(By.XPATH,"//input[@name='email']")
-        temp[1].clear()
-        temp[1].send_keys("username" +str(random.randint(100, 999)) + "@gmail.com")
-        time.sleep(5)
-        su = driver.find_element(By.XPATH,"//button[normalize-space()='Signup']")
-        driver.execute_script("arguments[0].click();", su)
-
-    else: break
-
-
-
+    except:
+        break
 
 
+password = driver.find_element(By.XPATH, "//input[@id='password']")
+driver.execute_script("arguments[0].scrollIntoView(true)", password)
+password.send_keys("12345")
 
 
+fn = driver.find_element(By.XPATH, "//input[@id='first_name']")
+driver.execute_script("arguments[0].scrollIntoView(true)", fn)
+fn.send_keys("User")
 
+ln = driver.find_element(By.XPATH, "//input[@id='last_name']")
+driver.execute_script("arguments[0].scrollIntoView(true)", ln)
+ln.send_keys("Name")
 
+add = driver.find_element(By.XPATH, "//input[@id='address1']")
+driver.execute_script("arguments[0].scrollIntoView(true)", add)
+add.send_keys("Dhaka")
 
+state =driver.find_element(By.XPATH, "//input[@id='state']")
+driver.execute_script("arguments[0].scrollIntoView(true)", state)
+state.send_keys("state")
+
+city=driver.find_element(By.XPATH, "//input[@id='city']")
+driver.execute_script("arguments[0].scrollIntoView(true)", city)
+city.send_keys("city")
+
+zipcode=driver.find_element(By.XPATH, "//input[@id='zipcode']")
+driver.execute_script("arguments[0].scrollIntoView(true)", zipcode)
+zipcode.send_keys("1111")
+
+mobile =driver.find_element(By.XPATH, "//input[@id='mobile_number']")
+driver.execute_script("arguments[0].scrollIntoView(true)", mobile)
+mobile.send_keys("01633333333")
+
+create_account = driver.find_element(By.XPATH,"//button[normalize-space()='Create Account']")
+create_account.click()
 
 time.sleep(5)
