@@ -148,5 +148,34 @@ cvc.send_keys("123")
 mm.send_keys("10")
 yy.send_keys("2025")
 
+time.sleep(2)
+order_confirm = driver.find_element(By.XPATH,"//button[@id='submit']")
+order_confirm.click()
+
+#driver.implicitly_wait(1)
+#confirmation_text = driver.find_element(By.XPATH,"//div[contains(text(),'Your order has been placed successfully!')]")
+#expected_text = "Your order has been placed successfully"
+
+
+#if confirmation_text.text==expected_text:
+#    print("confirmation text is matched")
+#
+#else:print("confirmation text is not matched ")
+
+time.sleep(5)
+success = driver.find_element(By.XPATH,"//b[normalize-space()='Order Placed!']")
+
+if success.is_displayed():
+    print("Order is successfully placed")
+
+else:
+    print("not successfull")
+
+
+
+
+
+success_continue = driver.find_element(By.XPATH,"//a[normalize-space()='Continue']")
+success_continue.click()
 
 time.sleep(5)
